@@ -1,7 +1,6 @@
 package com.cursos.ecommerce.spring_ecommerce.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -16,9 +15,19 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Orden {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String numero;
     private LocalDateTime fechaCreacion;
     private LocalDateTime fechaRecibida;
     private double total;
+
+    @ManyToOne
+    private Usuario usuario;
+
+    @OneToOne
+    private DetalleOrden detalle;
 }
