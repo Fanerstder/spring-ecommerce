@@ -1,18 +1,17 @@
 package com.cursos.ecommerce.spring_ecommerce.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Table(name = "usuarios")
 @Entity(name = "Usuario")
 @Getter
-@AllArgsConstructor
+@Setter
+@ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Usuario {
 
@@ -33,4 +32,5 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario")
     private List<Orden> ordenes;
+
 }
