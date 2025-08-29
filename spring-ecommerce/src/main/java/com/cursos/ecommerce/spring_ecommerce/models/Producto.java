@@ -20,7 +20,7 @@ public class Producto {
     private String nombre;
     private String descripcion;
     private String imagen;
-    private String precio;
+    private double precio;
     private int cantidad;
 
     @ManyToOne
