@@ -9,7 +9,6 @@ import java.util.List;
 @Entity(name = "Usuario")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")

@@ -1,16 +1,14 @@
 package com.cursos.ecommerce.spring_ecommerce.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Table(name = "detalleOrdenes")
 @Entity(name = "DetalleOrden")
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @EqualsAndHashCode(of = "id")
 public class DetalleOrden {
 
