@@ -5,10 +5,10 @@ import lombok.*;
 
 @Table(name = "detalleOrdenes")
 @Entity(name = "DetalleOrden")
-@Getter
+@Data
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @EqualsAndHashCode(of = "id")
 public class DetalleOrden {
 

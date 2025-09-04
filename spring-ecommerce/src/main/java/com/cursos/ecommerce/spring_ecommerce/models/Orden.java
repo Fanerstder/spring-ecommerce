@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 @Entity(name = "Orden")
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")

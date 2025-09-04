@@ -5,8 +5,7 @@ import lombok.*;
 
 @Table(name = "productos")
 @Entity(name = "Producto")
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
