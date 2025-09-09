@@ -4,6 +4,8 @@ import com.cursos.ecommerce.spring_ecommerce.models.DetalleOrden;
 import com.cursos.ecommerce.spring_ecommerce.models.Orden;
 import com.cursos.ecommerce.spring_ecommerce.models.Producto;
 import com.cursos.ecommerce.spring_ecommerce.models.Usuario;
+import com.cursos.ecommerce.spring_ecommerce.services.IDetalleOrdenService;
+import com.cursos.ecommerce.spring_ecommerce.services.IOrdenService;
 import com.cursos.ecommerce.spring_ecommerce.services.IUsuarioService;
 import com.cursos.ecommerce.spring_ecommerce.services.ProductoService;
 import org.slf4j.Logger;
@@ -13,7 +15,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +39,12 @@ public class HomeController {
 
     @Autowired
     private IUsuarioService usuarioService;
+
+    @Autowired
+    private IOrdenService ordenService;
+
+    @Autowired
+    private IDetalleOrdenService detalleOrdenService;
 
     @GetMapping("")
     public String home(Model model) {
@@ -131,5 +142,30 @@ public class HomeController {
         model.addAttribute("usuario", usuario);
 
         return "usuario/resumenorden";
+    }
+
+    @GetMapping("/saveOrder")
+    public String saveOrder() {
+        LocalDateTime fechaCreacion = LocalDateTime.now();
+        orden.setFechaCreacion(fechaCreacion);
+        orden.setNumero(ordenService.generarNumeroOrden());
+
+        //usuario
+        Usuario usuario = usuarioService.findById(Long.valueOf(1)).get();
+
+        orden.setUsuario(usuario);
+        ordenService.save(orden);
+
+        //guardar detalles
+        for(DetalleOrden dt:detalles) {
+            dt.setOrden(orden);
+            detalleOrdenService.save(dt);
+        }
+
+        //limpiar lista y orden
+        orden = new Orden();
+        detalles.clear();
+
+        return "redirect:/";
     }
 }
