@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "ordenes")
 @Entity(name = "Orden")
@@ -26,6 +28,7 @@ public class Orden {
     @ManyToOne
     private Usuario usuario;
 
-    @OneToOne
-    private DetalleOrden detalle;
+    @OneToMany(mappedBy = "orden", cascade = CascadeType.ALL, orphanRemoval = true)
+
+    private List<DetalleOrden> detalle = new ArrayList<>();
 }
