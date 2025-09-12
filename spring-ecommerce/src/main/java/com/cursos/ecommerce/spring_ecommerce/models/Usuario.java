@@ -7,8 +7,7 @@ import java.util.List;
 
 @Table(name = "usuarios")
 @Entity(name = "Usuario")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")

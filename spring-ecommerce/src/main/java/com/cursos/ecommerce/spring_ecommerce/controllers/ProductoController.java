@@ -4,8 +4,10 @@ package com.cursos.ecommerce.spring_ecommerce.controllers;
 
 import com.cursos.ecommerce.spring_ecommerce.models.Producto;
 import com.cursos.ecommerce.spring_ecommerce.models.Usuario;
+import com.cursos.ecommerce.spring_ecommerce.services.IUsuarioService;
 import com.cursos.ecommerce.spring_ecommerce.services.ProductoService;
 import com.cursos.ecommerce.spring_ecommerce.services.UploadFileService;
+import jakarta.servlet.http.HttpSession;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,9 @@ public class ProductoController {
     @Autowired
     private ProductoService productoService;
 
+    @Autowired
+    private IUsuarioService usuarioService;
+
     @GetMapping("")
     public String show(Model model) {
         model.addAttribute("productos", productoService.findAll());
@@ -41,9 +46,11 @@ public class ProductoController {
     }
 
     @PostMapping("/save")
-    public String save(Producto producto, @RequestParam("img") MultipartFile file) throws IOException {
+    public String save(Producto producto, @RequestParam("img") MultipartFile file, HttpSession session) throws IOException {
         LOGGER.info("este es el objeto producto {}", producto);
-        Usuario u = new Usuario(Long.valueOf(1), "",  "", "", "", "", "", "", new ArrayList<>(), new ArrayList<>() );
+
+        Usuario u = usuarioService.findById(Long.valueOf(Integer.parseInt(session.getAttribute("idusuario").toString()))).get();
+        //Usuario u = new Usuario(Long.valueOf(1), "",  "", "", "", "", "", "", new ArrayList<>(), new ArrayList<>() );
         producto.setUsuario(u);
         //imagen
         if (producto.getId() == null) { //cuando se crea un producto

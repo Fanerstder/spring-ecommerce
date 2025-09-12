@@ -6,6 +6,7 @@ import lombok.*;
 @Table(name = "productos")
 @Entity(name = "Producto")
 @Data
+@ToString(exclude = "usuario")
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
