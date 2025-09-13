@@ -1,6 +1,7 @@
 package com.cursos.ecommerce.spring_ecommerce.services;
 
 import com.cursos.ecommerce.spring_ecommerce.models.Orden;
+import com.cursos.ecommerce.spring_ecommerce.models.Usuario;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,4 +11,5 @@ public interface IOrdenService {
     List<Orden> findAll();
     Orden save(Orden orden);
     String generarNumeroOrden();
+    List<Orden> findByUsuario (Usuario usuario);
 }
