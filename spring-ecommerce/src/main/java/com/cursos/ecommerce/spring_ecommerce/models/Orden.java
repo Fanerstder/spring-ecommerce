@@ -29,6 +29,5 @@ public class Orden {
     private Usuario usuario;
 
     @OneToMany(mappedBy = "orden", cascade = CascadeType.ALL, orphanRemoval = true)
-
     private List<DetalleOrden> detalle = new ArrayList<>();
 }
