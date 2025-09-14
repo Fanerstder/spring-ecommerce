@@ -1,13 +1,14 @@
 package com.cursos.ecommerce.spring_ecommerce.controllers;
 
 import com.cursos.ecommerce.spring_ecommerce.models.Producto;
+import com.cursos.ecommerce.spring_ecommerce.services.IUsuarioService;
 import com.cursos.ecommerce.spring_ecommerce.services.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 
 import java.util.List;
 
@@ -18,11 +19,21 @@ public class AdministradorController {
     @Autowired
     private ProductoService productoService;
 
+    @Autowired
+    private IUsuarioService usuarioService;
+
     @GetMapping("")
     public String home(Model model) {
         List<Producto> productos =productoService.findAll();
         model.addAttribute("productos", productos);
         return "administrador/home";
     }
+
+    @GetMapping("/usuarios")
+    public String usuarios(Model model) {
+        model.addAttribute("usuarios", usuarioService.findAll());
+        return "administrador/usuarios";
+    }
+
 
 }
