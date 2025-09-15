@@ -6,7 +6,7 @@ import lombok.*;
 @Table(name = "detalleOrdenes")
 @Entity(name = "DetalleOrden")
 @Data
-@ToString
+@ToString(exclude = "orden")
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")

@@ -9,8 +9,8 @@ import java.util.List;
 
 @Table(name = "ordenes")
 @Entity(name = "Orden")
-@Getter
-@Setter
+@Data
+@ToString(exclude = "usuario")
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
