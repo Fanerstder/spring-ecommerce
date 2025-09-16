@@ -17,7 +17,7 @@ public class DetalleOrden {
     private Long id;
 
     private String nombre;
-    private double cantidad;
+    private Integer cantidad;
     private double precio;
     private double total;
 
